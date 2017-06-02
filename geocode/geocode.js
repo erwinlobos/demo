@@ -8,9 +8,9 @@ var geocodeAddress = (address, callback) => {
     json: true
   }, (error, response, body) => {
     if (error) {
-      callback('Unable to connect to Google servers.');
+      callback('No es posible conectar a la api de Google');
     } else if (body.status === 'ZERO_RESULTS') {
-      callback('Unable to find that address.');
+      callback('No es posible obtener las coordenadas');
     } else if (body.status === 'OK') {
       callback(undefined, {
         address: body.results[0].formatted_address,

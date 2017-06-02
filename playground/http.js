@@ -8,6 +8,7 @@ request({
   console.log(`Latitude: ${body.results[0].geometry.location.lat}`);
   console.log(`Longitude: ${body.results[0].geometry.location.lng}`);
   
+  // Devolver un objeto json
   var coordenadas = {
         address: body.results[0].formatted_address,
         latitude: body.results[0].geometry.location.lat,

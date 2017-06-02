@@ -6,9 +6,9 @@ var getWeather = (lat, lng, callback) => {
     json: true
   }, (error, response, body) => {
     if (error) {
-      callback('Unable to connect to Forecast.io server.');
+      callback('No es posible conectar a la api de forecast.');
     } else if (response.statusCode === 400) {
-      callback('Unable to fetch weather.');
+      callback('No es posible consultar los datos.');
     } else if (response.statusCode === 200) {
       callback(undefined, {
         temperature: body.currently.temperature,

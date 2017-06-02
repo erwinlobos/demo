@@ -1,32 +1,34 @@
-const yargs = require('yargs');
-
+const express = require('express')
 const geocode = require('./geocode/geocode');
 const weather = require('./weather/weather');
+const app = express()
 
-const argv = yargs
-  .options({
-    a: {
-      demand: true,
-      alias: 'address',
-      describe: 'Address to fetch weather for',
-      string: true
+app.get('/', function (req, res) {
+  res.send('<h1>Test CSD</h1>')
+})
+
+app.get('/clima/:ciudad?', function (req, res) {
+  geocode.geocodeAddress(req.params.ciudad, (errorMessage, results) => {
+    if (errorMessage) {
+      console.log(errorMessage);
+    } else {
+      console.log(results.address);
+      weather.getWeather(results.latitude, results.longitude, (errorMessage, weatherResults) => {
+        if (errorMessage) {
+          console.log(errorMessage);
+        } else {          
+          var resp = {
+            ciudad : results.address,
+            latitud : results.latitude,
+            longitud : results.longitude,
+            temperatura : weatherResults.temperature,
+            sensacionTermina : weatherResults.apparentTemperature
+          }          
+          res.send(resp)
+        }
+      });
     }
-  })
-  .help()
-  .alias('help', 'h')
-  .argv;
+  });
+})
 
-geocode.geocodeAddress(argv.address, (errorMessage, results) => {
-  if (errorMessage) {
-    console.log(errorMessage);
-  } else {
-    console.log(results.address);
-    weather.getWeather(results.latitude, results.longitude, (errorMessage, weatherResults) => {
-      if (errorMessage) {
-        console.log(errorMessage);
-      } else {
-        console.log(`It's currently ${weatherResults.temperature}. It feels like ${weatherResults.apparentTemperature}.`);
-      }
-    });
-  }
-});
+app.listen(80, '0.0.0.0')
