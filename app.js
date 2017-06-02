@@ -23,7 +23,7 @@ app.get('/clima/:ciudad?', function (req, res) {
             latitud : results.latitude,
             longitud : results.longitude,
             temperatura : weatherResults.temperature,
-            sensacionTermina : weatherResults.apparentTemperature
+            sensacionTermica : weatherResults.apparentTemperature
           }          
           res.send(resp)
         }
