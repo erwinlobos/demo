@@ -31,6 +31,6 @@ app.get('/clima/:ciudad?', function (req, res) {
   });
 })
 
-app.listen(443, function() {
-  console.log('Node app is running on port 443');
+app.listen(80, function() {
+  console.log('Node app is running on port 80');
 });
