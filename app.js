@@ -5,7 +5,7 @@ const app = express()
 const port = process.env.PORT || 80;
 
 app.get('/', function (req, res) {
-  res.send('<h1>Test CSD</h1>')
+  res.send('<h1>Demo CSD</h1>')
 })
 
 app.get('/clima/:ciudad?', function (req, res) {
