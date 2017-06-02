@@ -25,7 +25,7 @@ app.get('/clima/:ciudad?', function (req, res) {
             temperatura : weatherResults.temperature,
             sensacionTermina : weatherResults.apparentTemperature
           }          
-          res.json(resp)
+          res.send(resp)
         }
       });
     }
