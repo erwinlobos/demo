@@ -2,7 +2,6 @@ const express = require('express')
 
 const app = express()
 
-
 app.get('/ciudad/:ciudad?', function(req,res) {
  res.send(req.params.ciudad);
 })
