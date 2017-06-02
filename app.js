@@ -31,4 +31,6 @@ app.get('/clima/:ciudad?', function (req, res) {
   });
 })
 
-app.listen(8080)
+app.listen(8080, function() {
+  console.log('Node app is running on port', app.get('port'));
+});
