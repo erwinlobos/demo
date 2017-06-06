@@ -33,5 +33,5 @@ app.get('/clima/:ciudad?', function (req, res) {
 })
 
 app.listen(port, function() {
-  console.log('App ejecutandose en puerto '+port);
+  console.log('NodeApp ejecutandose en puerto '+port);
 });
